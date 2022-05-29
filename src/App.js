@@ -1,24 +1,27 @@
-import React, { Component } from 'react';
-import Home from './Home';
+import { BrowserRouter, Routes, Route} from "react-router-dom";
+import Home from "./pages/Home/Home";
+import Navbar from "./components/Navbar";
 
-class App extends Component {
-    
-    constructor(props) {
-        super(props);
-        this.state = {  }
-    }
-    render() { 
-        return ( 
-            <div>
-                <h1></h1>
 
-                <Home/>
-            </div>
-         );
-    }
+const App = () => {
+
+    return ( 
+
+        <BrowserRouter>
+
+            <Navbar/>
+            
+            <Routes>
+                <Route path="/" element={<Home/>}/>
+            </Routes>
+
+        </BrowserRouter>
+     );
 }
  
 export default App;
+ 
+
 
 
 
