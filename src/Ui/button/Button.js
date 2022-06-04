@@ -1,11 +1,10 @@
-import Button from "../button/Button.modules.css";
+import style from "./Button.module.css";
 
-
-const ButtonCard = (props) => {
+const Button = (props) => {
 
     return ( 
-        <button onClick={() => props.onClick(props.element)}>{props.children}</button>
-    );
+        <button className={style.btn}>{props.children}</button>
+     );
 }
  
-export default ButtonCard;
+export default Button;

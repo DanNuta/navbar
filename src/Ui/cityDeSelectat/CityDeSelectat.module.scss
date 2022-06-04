@@ -1,0 +1,21 @@
+
+
+.town{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    padding: 0 10px;
+
+
+    &__city{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+
+    &:hover{
+        background-color: rgba(88, 136, 151, 0.11);
+    }
+}

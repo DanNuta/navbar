@@ -1,0 +1,14 @@
+
+
+
+ .city_destination{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px;
+    background-color: rgb(0, 132, 255);
+    border-radius: 100px;
+    color: white;
+}
+
+

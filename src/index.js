@@ -1,14 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import ShopCtx from "../src/context/ShopCtx";
+import TownCityContext from "../src/context/TownCityContext";
 
 
 ReactDOM.render(
 
-    <ShopCtx>
-        <App/>
-    </ShopCtx>
+    <TownCityContext>
+
+            <App/>
+
+    </TownCityContext>
+    
 ,
 
 document.getElementById('root'));
