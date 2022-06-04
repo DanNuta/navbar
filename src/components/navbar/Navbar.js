@@ -14,7 +14,7 @@ import { useContext } from "react";
 
 const Navbar = () => {
 
-    const {toggleDestination, activateToggleDestination, selectDestination} = useContext(Town);
+    const {toggleDestination, activateToggleDestination, selectDestination, removeDestination} = useContext(Town);
 
     
 
@@ -28,10 +28,10 @@ const Navbar = () => {
             <div className={style.nav__destination}>
                 <h2 className={style.font_text}>Din</h2>
 
-                <div onClick={activateToggleDestination}  className={style.element_destination}>
+                <div  onClick={activateToggleDestination}  className={style.element_destination}>
 
                     {selectDestination.map(item =>(
-                        <WordSelected element={item.city}/>
+                        <WordSelected onClick={removeDestination}  element={item.city}/>
                     ))}
 
                 </div>

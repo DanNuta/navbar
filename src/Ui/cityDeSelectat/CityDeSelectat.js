@@ -8,7 +8,7 @@ import { useContext } from "react";
 
 const CityDeSelectat = (props) => {
 
-    const {selectCity, toggleDestination, activateToggleDestination} = useContext(Town);
+    const {selectCity, toggleDestination, activateToggleDestination, selectDestination} = useContext(Town);
 
 
 
@@ -17,6 +17,10 @@ const CityDeSelectat = (props) => {
         selectCity(props.city)
         activateToggleDestination()
     }
+
+    let searchElement = selectDestination.find(item => item.id === props.city.id);
+
+    console.log("Search",searchElement)
 
     return ( 
         <div onClick={cityElement} key={props.city.id} className={style.town}>
@@ -28,7 +32,9 @@ const CityDeSelectat = (props) => {
                 </div>
             </div>
 
-            <CircleOutlinedIcon/>
+            {props.destination ? <CheckCircleOutlineOutlinedIcon/> : <CircleOutlinedIcon/>}
+
+            
         </div>
      );
 }

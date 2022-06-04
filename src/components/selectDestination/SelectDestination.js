@@ -9,7 +9,9 @@ import { useContext } from "react";
 
 const SelectDestination = (props) => {
 
-    const {destination, selectDestination} = useContext(Town);
+    const {destination, selectDestination, removeDestination} = useContext(Town);
+
+    
 
     return ( 
         <Card toggle={props.toggle} className={style.destination}>
@@ -24,7 +26,7 @@ const SelectDestination = (props) => {
                             <div className={style.word_selected_destination}>
 
                                 {selectDestination.map(item =>(
-                                    <WordSelected element={item.city}/>
+                                    <WordSelected onClick={removeDestination} element={item.city} id={item.id}/>
 
                                 ))}
                                 
@@ -43,6 +45,15 @@ const SelectDestination = (props) => {
                     <div className={style.city_delected_element}>
 
                         <div className={style.base_overlow}>
+
+
+                       {selectDestination.length > 0 &&  <h5 className={style.text_city}>Deja incluse</h5>}
+
+                            {selectDestination.map(item => (
+                                <CityDeSelectat destination={1}  city={item}/>
+                            ))}
+
+
                         <h5 className={style.text_city}>Orase populate din regiunea ta</h5>
 
                             {destination.map(item => (

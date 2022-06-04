@@ -9,6 +9,7 @@ export const Town = createContext()
 
 
 
+
 const townReducer = (state, action) =>{
 
     if(action.type === "TOGGLE_DESTINATION"){
@@ -19,36 +20,26 @@ const townReducer = (state, action) =>{
     }
 
 
-
-
-
-
     if(action.type === "SELECT_DESTINATION"){
 
-        let data = [];
-        
-        let findElement = data.some(item => item.id === action.peyload.id);
-
-        console.log(data.map(item => item.id ))
-        
-        
-        if(findElement){
-            console.log("acest element este deja in array")
-            return
-        }
-        data.push(...state.selectDestination, action.peyload);
-        
-        console.log(findElement)
-        
-        let dest = data.slice(0, 3);
-        
-       
-
-       
+        let verifyElement = state.selectDestination.some(item => item.id === action.peyload.id);
+        let validationData = verifyElement ? state.selectDestination : [...state.selectDestination, action.peyload]
        
         return {
             ...state,
-            selectDestination: dest
+            selectDestination: validationData.splice(0, 3)
+        }
+    }
+
+
+
+
+    if(action.type === "REMOVE_DESTINATION"){
+        let deleteDestination = state.selectDestination.filter(item => item.id !== action.peyload)
+
+        return {
+            ...state,
+            selectDestination: deleteDestination
         }
     }
 
@@ -70,27 +61,27 @@ const TownCityContext = (props) => {
             {
                 city: "Viena",
                 country: "Italia",
-                id: 1
+                id: 2
             },
             {
                 city: "Bucuresti",
                 country: "Romania",
-                id: 2
+                id: 3
             },
             {
                 city: "Roma",
                 country: "Italia",
-                id: 3
+                id: 4
             },
             {
                 city: "Paris",
                 country: "Franta",
-                id: 4
+                id: 5
             },
             {
                 city: "Berlin",
                 country: "Germania",
-                id: 5
+                id: 6
             },
         ],
         spre: ["Atena", "Berlin", "Budapesta", "Bucuresti", "Cahul"],
@@ -115,7 +106,13 @@ const TownCityContext = (props) => {
 
     const destinationToggle = () =>{
         disspach({type: "TOGGLE_DESTINATION"})
+    }
 
+
+    const removeDestination = (id) =>{
+        disspach({type: "REMOVE_DESTINATION", peyload: id})
+
+        
     }
 
 
@@ -126,7 +123,8 @@ const TownCityContext = (props) => {
         selectCity: selectCity,
         toggleDestination: town.toggleDestination,
         activateToggleDestination: destinationToggle,
-        selectDestination: town.selectDestination
+        selectDestination: town.selectDestination,
+        removeDestination: removeDestination
     }
 
 

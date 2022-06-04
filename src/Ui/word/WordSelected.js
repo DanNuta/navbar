@@ -4,12 +4,14 @@ import style from "./WordSelected.module.css"
 
 const WordSelected = (props) => {
 
+    console.log("Element",props)
+
     
 
     return ( 
-        <div className={style.city_destination}>
+        <div  className={style.city_destination}>
             <h5>{props.element}</h5>
-            <CancelIcon/>
+            <CancelIcon onClick={() => props.onClick(props.id)}/>
         </div>
      );
 }
