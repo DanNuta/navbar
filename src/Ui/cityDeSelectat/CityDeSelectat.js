@@ -8,19 +8,25 @@ import { useContext } from "react";
 
 const CityDeSelectat = (props) => {
 
-    const {selectCity, toggleDestination, activateToggleDestination, selectDestination} = useContext(Town);
+    const {selectCity, toggleDestination, activateToggleDestination, selectDestination, removeDestination} = useContext(Town);
 
 
 
     const cityElement = () =>{
+
+        let obj = {
+            city: props.city,
+            destination: props.destination
+        }
         
-        selectCity(props.city)
+        selectCity(obj)
         activateToggleDestination()
+        
+
     }
 
-    let searchElement = selectDestination.find(item => item.id === props.city.id);
 
-    console.log("Search",searchElement)
+    
 
     return ( 
         <div onClick={cityElement} key={props.city.id} className={style.town}>

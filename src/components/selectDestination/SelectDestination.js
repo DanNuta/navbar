@@ -11,6 +11,19 @@ const SelectDestination = (props) => {
 
     const {destination, selectDestination, removeDestination} = useContext(Town);
 
+    let select = destination.map(item => item.city);
+
+    console.log(select)
+
+    const changeFn = (e) =>{
+        let value = e.target.value;
+
+
+        
+        
+
+    }
+
     
 
     return ( 
@@ -32,7 +45,7 @@ const SelectDestination = (props) => {
                                 
                             </div>
 
-                            <Input/>
+                            <Input input={{type: "text", onChange: changeFn}}/>
                         </div>
                     </div>
 
@@ -50,14 +63,14 @@ const SelectDestination = (props) => {
                        {selectDestination.length > 0 &&  <h5 className={style.text_city}>Deja incluse</h5>}
 
                             {selectDestination.map(item => (
-                                <CityDeSelectat destination={1}  city={item}/>
+                                <CityDeSelectat  destination={true} city={item}/>
                             ))}
 
 
                         <h5 className={style.text_city}>Orase populate din regiunea ta</h5>
 
                             {destination.map(item => (
-                                <CityDeSelectat  city={item}/>
+                                <CityDeSelectat destination={false}  city={item}/>
                             ))}
 
                         </div>

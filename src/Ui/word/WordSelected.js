@@ -4,7 +4,7 @@ import style from "./WordSelected.module.css"
 
 const WordSelected = (props) => {
 
-    console.log("Element",props)
+   
 
     
 

@@ -22,11 +22,14 @@ const townReducer = (state, action) =>{
 
     if(action.type === "SELECT_DESTINATION"){
 
-        let verifyElement = state.selectDestination.some(item => item.id === action.peyload.id);
-        let validationData = verifyElement ? state.selectDestination : [...state.selectDestination, action.peyload]
+        let verifyElement = state.selectDestination.some(item => item.id === action.peyload.city.id);
+        let deleteElementInsideDestination = action.peyload.destination ? state.selectDestination.filter(item => item.id !== action.peyload.city.id) : state.selectDestination;
+        let validationData = verifyElement ? deleteElementInsideDestination : [...state.selectDestination, action.peyload.city];
+
        
         return {
             ...state,
+            toggleDestination: verifyElement ? false : true,
             selectDestination: validationData.splice(0, 3)
         }
     }
@@ -36,6 +39,7 @@ const townReducer = (state, action) =>{
 
     if(action.type === "REMOVE_DESTINATION"){
         let deleteDestination = state.selectDestination.filter(item => item.id !== action.peyload)
+        
 
         return {
             ...state,
@@ -111,6 +115,7 @@ const TownCityContext = (props) => {
 
     const removeDestination = (id) =>{
         disspach({type: "REMOVE_DESTINATION", peyload: id})
+        console.log(id)
 
         
     }
