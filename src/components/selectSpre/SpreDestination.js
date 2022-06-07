@@ -1,5 +1,5 @@
 import Card from "../../Ui/card/Card";
-import style from "./SelectDestination.module.scss";
+import style from "../selectDestination/SelectDestination.module.scss";
 import Input from "../../Ui/input/Input";
 import WordSelected from "../../Ui/word/WordSelected";
 import CityDeSelectat from "../../Ui/cityDeSelectat/CityDeSelectat";
@@ -13,12 +13,15 @@ const SelectDestination = (props) => {
 
    
 
+
+    console.log("spre", spre)
     
 
 
     const changeFn = (e) =>{
         let value = e.target.value;
     
+        //let include = select.includes(value);
 
         let el = destinationSearch.map(item => Array.from(item.city)
                             .splice(0, value.length)
@@ -47,7 +50,7 @@ const SelectDestination = (props) => {
             <div className={style.element}>
 
                     <div className={style.search_destination}>
-                        <h2 className={style.font_text}>Din</h2>
+                        <h2 className={style.font_text}>Spre</h2>
 
                         <div className={style.word_search}>
 
@@ -84,7 +87,7 @@ const SelectDestination = (props) => {
 
                         <h5 className={style.text_city}>Orase populate din regiunea ta</h5>
 
-                            {destinationSearch.map(item => (
+                            {spre.map(item => (
                                 <CityDeSelectat destination={false}  city={item}/>
                             ))}
 
@@ -101,3 +104,9 @@ const SelectDestination = (props) => {
 }
  
 export default SelectDestination;
+
+
+
+
+
+

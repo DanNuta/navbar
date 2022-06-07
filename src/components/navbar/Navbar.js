@@ -10,6 +10,7 @@ import reactDom from "react-dom";
 import SelectDestination from "../selectDestination/SelectDestination";
 import { Town } from "../../context/TownCityContext";
 import { useContext } from "react";
+import SpreDestination from "../selectSpre/SpreDestination"
 
 
 const Navbar = () => {
@@ -64,8 +65,8 @@ const Navbar = () => {
 
                 </div>
 
-                {!toggleSpre && <SelectDestination toggle={toggleSpre}/>}
-                {toggleSpre && <SelectDestination toggle={toggleSpre}/>}
+                {!toggleSpre && <SpreDestination toggle={toggleSpre}/>}
+                {toggleSpre && <SpreDestination toggle={toggleSpre}/>}
                 {toggleSpre && reactDom.createPortal(<div onClick={activateSpre} className={style.second_element}></div>, document.querySelector(".destination"))}
 
             </div>

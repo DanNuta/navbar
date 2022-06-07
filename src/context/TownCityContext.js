@@ -111,7 +111,38 @@ const TownCityContext = (props) => {
                 id: 6
             },
         ],
-        spre: ["Atena", "Berlin", "Budapesta", "Bucuresti", "Cahul"],
+        spre: [
+            {
+                city: "Rezina",
+                country: "Moldova",
+                id: 1
+            },
+            {
+                city: "Viena",
+                country: "Italia",
+                id: 2
+            },
+            {
+                city: "Bucuresti",
+                country: "Romania",
+                id: 3
+            },
+            {
+                city: "Roma",
+                country: "Italia",
+                id: 4
+            },
+            {
+                city: "Paris",
+                country: "Franta",
+                id: 5
+            },
+            {
+                city: "Berlin",
+                country: "Germania",
+                id: 6
+            },
+        ],
         toggleDestination: false,
         toggleSpre: false,
         selectDestination: [],
