@@ -15,7 +15,7 @@ import SpreDestination from "../selectSpre/SpreDestination"
 
 const Navbar = () => {
 
-    const {toggleDestination, activateToggleDestination, selectDestination, removeDestination, toggleSpre, activateSpre} = useContext(Town);
+    const {toggleDestination, activateToggleDestination, selectDestination, removeDestination, toggleSpre, activateSpre, spreDestination} = useContext(Town);
 
     
 
@@ -59,7 +59,7 @@ const Navbar = () => {
 
                 <div  onClick={activateSpre}  className={style.element_execution}>
 
-                    {selectDestination.map(item =>(
+                    {spreDestination.map(item =>(
                         <WordSelected onClick={removeDestination}  element={item.city}/>
                     ))}
 

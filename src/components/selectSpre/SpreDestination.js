@@ -2,14 +2,14 @@ import Card from "../../Ui/card/Card";
 import style from "../selectDestination/SelectDestination.module.scss";
 import Input from "../../Ui/input/Input";
 import WordSelected from "../../Ui/word/WordSelected";
-import CityDeSelectat from "../../Ui/cityDeSelectat/CityDeSelectat";
+import CitySpre from "../../Ui/citySpre/CitySpre"
 import { Town } from "../../context/TownCityContext";
 import { useContext } from "react";
 
 
 const SelectDestination = (props) => {
 
-    const {destination, selectDestination, removeDestination, searchDestination, destinationSearch, toggleDestination, spre} = useContext(Town);
+    const { removeSpre, selectSpre, searchDestination, spreDestination, toggleSpre, spre, searchSpre} = useContext(Town);
 
    
 
@@ -23,18 +23,15 @@ const SelectDestination = (props) => {
     
         //let include = select.includes(value);
 
-        let el = destinationSearch.map(item => Array.from(item.city)
+        let el = selectSpre.map(item => Array.from(item.city)
                             .splice(0, value.length)
                             .join("")
                             .includes(value) ? item : 0)
                             .filter(item => item.city);
 
-        //let checkValueLength = value.length === 0 ?
-
-
-
        
-        searchDestination(value.length === 0 ? destination : el)
+
+         searchSpre(value.length === 0 ? spre : el)
 
     }
 
@@ -56,8 +53,8 @@ const SelectDestination = (props) => {
 
                             <div className={style.word_selected_destination}>
 
-                                {selectDestination.map(item =>(
-                                    <WordSelected onClick={removeDestination} element={item.city} id={item.id}/>
+                                {spreDestination.map(item =>(
+                                    <WordSelected onClick={removeSpre} element={item.city} id={item.id}/>
 
                                 ))}
                                 
@@ -78,17 +75,17 @@ const SelectDestination = (props) => {
                         <div className={style.base_overlow}>
 
 
-                       {selectDestination.length > 0 &&  <h5 className={style.text_city}>Deja incluse</h5>}
+                       {spreDestination.length > 0 &&  <h5 className={style.text_city}>Deja incluse</h5>}
 
-                            {selectDestination.map(item => (
-                                <CityDeSelectat  destination={true} city={item}/>
+                            {spreDestination.map(item => (
+                                <CitySpre  destination={true} city={item}/>
                             ))}
 
 
                         <h5 className={style.text_city}>Orase populate din regiunea ta</h5>
 
                             {spre.map(item => (
-                                <CityDeSelectat destination={false}  city={item}/>
+                                <CitySpre destination={false}  city={item}/>
                             ))}
 
                         </div>

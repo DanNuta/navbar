@@ -1,14 +1,14 @@
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
-import style from "./CityDeSelectat.module.scss";
+import style from "../../Ui/cityDeSelectat/CityDeSelectat.module.scss";
 import { Town } from "../../context/TownCityContext";
 import { useContext } from "react";
 
 
 const CityDeSelectat = (props) => {
 
-    const {selectCity, activateToggleDestination } = useContext(Town);
+    const {selectSpre, activateSpre } = useContext(Town);
 
 
 
@@ -19,8 +19,8 @@ const CityDeSelectat = (props) => {
             destination: props.destination
         }
         
-        selectCity(obj)
-        activateToggleDestination()
+        selectSpre(obj)
+        activateSpre()
         
 
     }

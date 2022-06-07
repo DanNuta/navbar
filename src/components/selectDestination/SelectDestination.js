@@ -9,7 +9,7 @@ import { useContext } from "react";
 
 const SelectDestination = (props) => {
 
-    const {destination, selectDestination, removeDestination, searchDestination, destinationSearch, toggleDestination, spre} = useContext(Town);
+    const {destination, selectDestination, removeDestination, searchDestination, destinationSearch} = useContext(Town);
 
    
 
