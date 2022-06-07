@@ -9,24 +9,38 @@ import { useContext } from "react";
 
 const SelectDestination = (props) => {
 
-    const {destination, selectDestination, removeDestination} = useContext(Town);
+    const {destination, selectDestination, removeDestination, searchDestination} = useContext(Town);
 
-    let select = destination.map(item => item.city);
+   
 
-    console.log(select)
+
 
     const changeFn = (e) =>{
         let value = e.target.value;
+    
+        //let include = select.includes(value);
+
+        let el = destination.map(item => Array.from(item.city)
+                            .splice(0, value.length)
+                            .join("")
+                            .includes(value) ? item : 0)
+                                
+
+       // console.log(el)
 
 
-        
-        
+
+        searchDestination(el)
 
     }
 
     
 
-    return ( 
+    
+
+    return (
+        
+       
         <Card toggle={props.toggle} className={style.destination}>
 
             <div className={style.element}>

@@ -47,6 +47,19 @@ const townReducer = (state, action) =>{
         }
     }
 
+
+
+
+
+    if(action.type === "SEARCH"){
+       
+
+        return{ 
+            ...state,
+            destination: action.peyload
+        }
+    }
+
 }
 
 
@@ -115,9 +128,14 @@ const TownCityContext = (props) => {
 
     const removeDestination = (id) =>{
         disspach({type: "REMOVE_DESTINATION", peyload: id})
-        console.log(id)
+    }
 
-        
+
+
+    const searchDestination = (items) =>{
+        disspach({type: "SEARCH", peyload: items})
+
+       
     }
 
 
@@ -129,7 +147,8 @@ const TownCityContext = (props) => {
         toggleDestination: town.toggleDestination,
         activateToggleDestination: destinationToggle,
         selectDestination: town.selectDestination,
-        removeDestination: removeDestination
+        removeDestination: removeDestination,
+        searchDestination: searchDestination
     }
 
 
