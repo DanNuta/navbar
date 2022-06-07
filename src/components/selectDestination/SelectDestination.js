@@ -9,10 +9,11 @@ import { useContext } from "react";
 
 const SelectDestination = (props) => {
 
-    const {destination, selectDestination, removeDestination, searchDestination} = useContext(Town);
+    const {destination, selectDestination, removeDestination, searchDestination, destinationSearch} = useContext(Town);
 
    
 
+    console.log(destinationSearch)
 
 
     const changeFn = (e) =>{
@@ -20,17 +21,16 @@ const SelectDestination = (props) => {
     
         //let include = select.includes(value);
 
-        let el = destination.map(item => Array.from(item.city)
+        let el = destinationSearch.map(item => Array.from(item.city)
                             .splice(0, value.length)
                             .join("")
                             .includes(value) ? item : 0)
-                                
+                            .filter(item => item.city);
 
-       // console.log(el)
+        //let checkValueLength = value.length === 0 ?
 
 
-
-        searchDestination(el)
+        searchDestination(value.length === 0 ? destination : el)
 
     }
 
@@ -83,7 +83,7 @@ const SelectDestination = (props) => {
 
                         <h5 className={style.text_city}>Orase populate din regiunea ta</h5>
 
-                            {destination.map(item => (
+                            {destinationSearch.map(item => (
                                 <CityDeSelectat destination={false}  city={item}/>
                             ))}
 
