@@ -9,11 +9,11 @@ import { useContext } from "react";
 
 const SelectDestination = (props) => {
 
-    const {destination, selectDestination, removeDestination, searchDestination, destinationSearch} = useContext(Town);
+    const {destination, selectDestination, removeDestination, searchDestination, destinationSearch, toggleDestination} = useContext(Town);
 
    
 
-    console.log(destinationSearch)
+    
 
 
     const changeFn = (e) =>{
@@ -30,6 +30,8 @@ const SelectDestination = (props) => {
         //let checkValueLength = value.length === 0 ?
 
 
+
+       
         searchDestination(value.length === 0 ? destination : el)
 
     }

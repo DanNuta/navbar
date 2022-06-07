@@ -53,11 +53,20 @@ const townReducer = (state, action) =>{
 
     if(action.type === "SEARCH"){
        
-        console.log(action.peyload)
+        
 
         return{ 
             ...state,
             destinationSearch: action.peyload
+        }
+    }
+
+
+    if(action.type === "TOGGLE_SPRE"){
+
+        return{
+            ...state,
+            toggleSpre: !state.toggleSpre
         }
     }
 
@@ -104,6 +113,7 @@ const TownCityContext = (props) => {
         ],
         spre: ["Atena", "Berlin", "Budapesta", "Bucuresti", "Cahul"],
         toggleDestination: false,
+        toggleSpre: false,
         selectDestination: [],
         destinationSearch: [
             {
@@ -167,7 +177,11 @@ const TownCityContext = (props) => {
 
     const searchDestination = (items) =>{
         disspach({type: "SEARCH", peyload: items})
+    }
 
+
+    const activateSpre = () =>{
+        disspach({type: "TOGGLE_SPRE"})
     }
 
 
@@ -181,7 +195,9 @@ const TownCityContext = (props) => {
         selectDestination: town.selectDestination,
         removeDestination: removeDestination,
         searchDestination: searchDestination,
-        destinationSearch: town.destinationSearch
+        destinationSearch: town.destinationSearch,
+        toggleSpre: town.toggleSpre,
+        activateSpre: activateSpre
     }
 
 

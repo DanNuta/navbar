@@ -14,7 +14,7 @@ import { useContext } from "react";
 
 const Navbar = () => {
 
-    const {toggleDestination, activateToggleDestination, selectDestination, removeDestination} = useContext(Town);
+    const {toggleDestination, activateToggleDestination, selectDestination, removeDestination, toggleSpre, activateSpre} = useContext(Town);
 
     
 
@@ -51,16 +51,23 @@ const Navbar = () => {
 
 
 
+
+
             <div className={style.nav__execution}>
-                <h2 className={style.font_text}>spre</h2>
+            <h2 className={style.font_text}>Spre</h2>
 
-                <div className={style.element_execution}>
+                <div  onClick={activateSpre}  className={style.element_execution}>
 
-                    <WordSelected/>
-                    <WordSelected/>
-                    <WordSelected/>
+                    {selectDestination.map(item =>(
+                        <WordSelected onClick={removeDestination}  element={item.city}/>
+                    ))}
 
                 </div>
+
+                {!toggleSpre && <SelectDestination toggle={toggleSpre}/>}
+                {toggleSpre && <SelectDestination toggle={toggleSpre}/>}
+                {toggleSpre && reactDom.createPortal(<div onClick={activateSpre} className={style.second_element}></div>, document.querySelector(".destination"))}
+
             </div>
 
 
