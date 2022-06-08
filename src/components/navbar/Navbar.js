@@ -10,16 +10,14 @@ import reactDom from "react-dom";
 import SelectDestination from "../selectDestination/SelectDestination";
 import { Town } from "../../context/TownCityContext";
 import { useContext } from "react";
-import SpreDestination from "../selectSpre/SpreDestination"
+import SpreDestination from "../selectSpre/SpreDestination";
+import NumberPeople from "../numberPeople/NumberPeople";
 
 
 const Navbar = () => {
 
-    const {toggleDestination, activateToggleDestination, selectDestination, removeDestination, toggleSpre, activateSpre, spreDestination} = useContext(Town);
+    const {toggleDestination, activateToggleDestination, selectDestination, removeDestination, toggleSpre, activateSpre, spreDestination, swich, togglePeople, changeTogglePeople} = useContext(Town);
 
-    
-
-    
 
     return ( 
         <nav className={style.nav}>
@@ -46,7 +44,7 @@ const Navbar = () => {
 
 
             <div className={style.swipe}>
-                <SwapHorizIcon/>
+                <SwapHorizIcon onClick={swich}/>
             </div>
 
 
@@ -101,10 +99,18 @@ const Navbar = () => {
 
 
 
-            <div className={style.nav__select_people}>
+
+
+            <div onClick={togglePeople == false ? changeTogglePeople : null} className={style.nav__select_people}>
+
                 <SwapVertIcon/>
                 <h4>8</h4>
                 <PeopleIcon/>
+
+                {!togglePeople && <NumberPeople toggle={togglePeople}/>}
+                {togglePeople && <NumberPeople toggle={togglePeople}/>}
+                {togglePeople && reactDom.createPortal(<div onClick={togglePeople == true ? changeTogglePeople : null} className={style.second_element}></div>, document.querySelector(".destination"))}
+
             
 
             </div>

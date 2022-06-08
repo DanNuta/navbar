@@ -9,12 +9,11 @@ import { useContext } from "react";
 
 const SelectDestination = (props) => {
 
-    const { removeSpre, selectSpre, searchDestination, spreDestination, toggleSpre, spre, searchSpre} = useContext(Town);
+    const { removeSpre, selectSpre, spreSearchSelect, searchDestination, spreDestination, toggleSpre, spre, searchSpre, spreSearch} = useContext(Town);
 
    
 
 
-    console.log("spre", spre)
     
 
 
@@ -23,15 +22,17 @@ const SelectDestination = (props) => {
     
         //let include = select.includes(value);
 
-        let el = selectSpre.map(item => Array.from(item.city)
+        let el = searchSpre.map(item => Array.from(item.city)
                             .splice(0, value.length)
                             .join("")
                             .includes(value) ? item : 0)
                             .filter(item => item.city);
 
+        
+
        
 
-         searchSpre(value.length === 0 ? spre : el)
+        spreSearchSelect(value.length === 0 ? spre : el)
 
     }
 
@@ -84,7 +85,7 @@ const SelectDestination = (props) => {
 
                         <h5 className={style.text_city}>Orase populate din regiunea ta</h5>
 
-                            {spre.map(item => (
+                            {searchSpre.map(item => (
                                 <CitySpre destination={false}  city={item}/>
                             ))}
 

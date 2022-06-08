@@ -27,6 +27,7 @@ const townReducer = (state, action) =>{
         let validationData = verifyElement ? deleteElementInsideDestination : [...state.selectDestination, action.peyload.city];
 
        
+        
         return {
             ...state,
             toggleDestination: verifyElement ? false : true,
@@ -68,9 +69,10 @@ const townReducer = (state, action) =>{
     if(action.type === "SELECT_SPRE"){
 
         let verifyElement = state.spreDestination.some(item => item.id === action.peyload.city.id);
-        let deleteElementInsideDestination = action.peyload.spre ? state.spreDestination.filter(item => item.id !== action.peyload.city.id) : state.spreDestination;
+        let deleteElementInsideDestination = action.peyload.destination ? state.spreDestination.filter(item => item.id !== action.peyload.city.id) : state.spreDestination;
         let validationData = verifyElement ? deleteElementInsideDestination : [...state.spreDestination, action.peyload.city];
 
+        console.log("Action", deleteElementInsideDestination)
        
         return {
             ...state,
@@ -83,6 +85,7 @@ const townReducer = (state, action) =>{
 
     if(action.type === "TOGGLE_SPRE"){
 
+        
         return{
             ...state,
             toggleSpre: !state.toggleSpre
@@ -105,9 +108,47 @@ const townReducer = (state, action) =>{
     if(action.type === "SEARCH_SPRE"){
 
 
+        
+
         return{ 
             ...state,
-            selectSpre: action.peyload
+            spreSearch: action.peyload
+        }
+    }
+
+
+
+
+
+
+    // -----------------SWICH------------------------
+
+
+    if(action.type === "SWICH"){
+
+        let destination = state.selectDestination;
+        let spreEl = state.spreDestination;
+        let therdElement;
+
+        therdElement = destination
+        destination = spreEl
+        spreEl = therdElement
+
+        return{
+            ...state,
+            selectDestination: destination,
+            spreDestination: spreEl
+        }
+    }
+
+    //---------------------select people -------------------------------------
+
+    if(action.type === "TOGGLE_PEOPLE"){
+
+        
+        return{
+            ...state,
+            togglePeople: !state.togglePeople
         }
     }
 
@@ -255,6 +296,9 @@ const TownCityContext = (props) => {
             },
         ],
         spreDestination: [],
+
+
+        togglePeople: false
         
     }
 
@@ -262,7 +306,7 @@ const TownCityContext = (props) => {
 
 
 
-
+console.log("ElementContext")
 
 
 
@@ -303,28 +347,58 @@ const TownCityContext = (props) => {
     }
 
 
-    const searchSpre = (items) =>{
+    const spreSearchSelect = (items) =>{
         disspach({type: "SEARCH_SPRE", peyload: items})
     }
 
 
 
+    //------------------swich sity-----------------------------
+
+
+    const swhichCity = () =>{
+        disspach({type: "SWICH"})
+    }
+
+
+    //-----------------------people select----------------------------
+
+
+    const togglePeopleElement = () =>{
+        disspach({type: "TOGGLE_PEOPLE"})
+    }
+
+
+
    const valueElementState = {
+       //-------destination-------------------------
         destination: town.destination,
-        spre: town.spre,
-        selectCity: selectCity,
         toggleDestination: town.toggleDestination,
-        activateToggleDestination: destinationToggle,
         selectDestination: town.selectDestination,
+        destinationSearch: town.destinationSearch,
+        activateToggleDestination: destinationToggle,
         removeDestination: removeDestination,
         searchDestination: searchDestination,
-        destinationSearch: town.destinationSearch,
+        selectCity: selectCity,
+
+        //-------spre-----------
+        spre: town.spre,
         toggleSpre: town.toggleSpre,
+        spreDestination: town.spreDestination,
+        searchSpre: town.spreSearch,
         activateSpre: activateSpre,
         selectSpre: selectSpre,
         removeSpre: removeSpre,
-        searchSpre: searchSpre,
-        spreDestination: town.spreDestination,
+        spreSearchSelect: spreSearchSelect,
+
+        //----------swich----------------
+        swich: swhichCity,
+
+        //-----------people--------------
+        togglePeople: town.togglePeople,
+        changeTogglePeople: togglePeopleElement
+
+
     
     }
 
