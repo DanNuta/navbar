@@ -152,6 +152,55 @@ const townReducer = (state, action) =>{
         }
     }
 
+
+    if(action.type === "TOGGLE_ECONOM_BUSSINESS"){
+
+        return{
+            ...state,
+            toggleBussinessEconom: action.peyload
+        }
+    }
+
+
+
+    if(action.type === "NUMBER_PEOPLE"){
+
+        if(action.peyload === "adult"){
+
+            let incrementAdult = state.adult < 9 ? state.adult +1 : state.adult;
+            return{
+                ...state,
+                adult: incrementAdult
+            }
+        }
+
+
+        if(action.peyload === "copil"){
+            let incrementAdult = state.copil < 9 ? state.copil +1 : state.copil;
+            return{
+                ...state,
+                copil: incrementAdult
+            }
+        }
+
+
+
+
+        if(action.peyload === "bebelus"){
+            let incrementAdult = state.bebelus < 9 ? state.bebelus +1 : state.bebelus;
+            return{
+                ...state,
+                bebelus: incrementAdult
+            }
+        }
+
+
+
+        
+
+        
+    }
+
 }
 
 
@@ -161,6 +210,9 @@ const townReducer = (state, action) =>{
 const TownCityContext = (props) => {
     
    const defaultState = {
+
+
+   //----------- din ------------------------------------
         destination: [
             {
                 city: "Chisinau",
@@ -229,6 +281,7 @@ const TownCityContext = (props) => {
         ],
 
 
+        //------------------- spre -------------------------
 
         spre: [
             {
@@ -298,15 +351,18 @@ const TownCityContext = (props) => {
         spreDestination: [],
 
 
-        togglePeople: false
+        // ------------------------people ---------------------------------
+        togglePeople: false,
+        toggleBussinessEconom: false,
+        adult: 0,
+        copil: 0,
+        bebelus: 0
         
     }
 
     const [town, disspach] = useReducer(townReducer, defaultState);
 
 
-
-console.log("ElementContext")
 
 
 
@@ -369,6 +425,16 @@ console.log("ElementContext")
     }
 
 
+    const economBussinessToggleFn = (bool) =>{
+        disspach({type: "TOGGLE_ECONOM_BUSSINESS", peyload: bool})
+    }
+
+
+    const numberPeopleFn = (element) =>{
+        disspach({type: "NUMBER_PEOPLE", peyload: element})
+    }
+
+
 
    const valueElementState = {
        //-------destination-------------------------
@@ -396,7 +462,17 @@ console.log("ElementContext")
 
         //-----------people--------------
         togglePeople: town.togglePeople,
-        changeTogglePeople: togglePeopleElement
+        changeTogglePeople: togglePeopleElement,
+
+        toggleBussinessEconom: town.toggleBussinessEconom,
+        economBussinessToggleFn: economBussinessToggleFn,
+        adult: town.adult,
+        copil: town.copil,
+        bebelus: town.bebelus,
+        increment: numberPeopleFn,
+
+        total: town.copil + town.adult + town.bebelus > 9 ? 9 : town.copil + town.adult + town.bebelus
+
 
 
     
