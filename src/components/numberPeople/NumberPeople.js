@@ -10,7 +10,7 @@ import { useContext } from "react";
 
 const NumberPeople = (props) => {
 
-    const {toggleBussinessEconom, economBussinessToggleFn, bebelus, copil, adult, increment, total} = useContext(Town);
+    const {toggleBussinessEconom, economBussinessToggleFn, bebelus, copil, adult, increment, total, decrement} = useContext(Town);
 
     return ( 
 
@@ -42,9 +42,9 @@ const NumberPeople = (props) => {
                        </div>
 
                        <div className={style.people_select__btn}>
-                           <button className={total == 9 ? `${style.button_people}` : `${style.button_people} ${style.btn_disable}`}>-</button>
+                           <button disabled={adult == 0} onClick={() => decrement("adult")} className={total <= 9 && total >= 1 && adult != 0 ? `${style.button_people}` : `${style.button_people} ${style.btn_disable}`}>-</button>
                            <h1>{adult}</h1>
-                           <button className={total == 9 ? `${style.button_people} ${style.btn_disable}` : `${style.button_people}`} onClick={() => increment("adult")}>+</button>
+                           <button disabled={total == 9} className={total === 9  ? `${style.button_people} ${style.btn_disable}` : `${style.button_people}`} onClick={() => increment("adult")}>+</button>
                        </div>
 
                     </div>
@@ -60,9 +60,9 @@ const NumberPeople = (props) => {
                        </div>
 
                        <div className={style.people_select__btn}>
-                       <button className={total == 9 ? `${style.button_people}` : `${style.button_people} ${style.btn_disable}`}>-</button>
+                       <button disabled={copil == 0} onClick={() => decrement("copil")} className={copil <= 7 && copil != 0 ? `${style.button_people}` : `${style.button_people} ${style.btn_disable}`}>-</button>
                            <h1>{copil}</h1>
-                           <button className={total == 9 ? `${style.button_people} ${style.btn_disable}` : `${style.button_people}`} onClick={() => increment("copil")}>+</button>
+                           <button disabled={total > 8} className={total > 8 ? `${style.button_people} ${style.btn_disable}` : `${style.button_people}`} onClick={() => increment("copil")}>+</button>
                        </div>
 
                     </div>
@@ -78,9 +78,9 @@ const NumberPeople = (props) => {
                        </div>
 
                        <div className={style.people_select__btn}>
-                       <button className={total == 9 ? `${style.button_people}` : `${style.button_people} ${style.btn_disable}`}>-</button>
+                       <button disabled={bebelus == 0} onClick={() => decrement("bebelus")}  className={total <= 9 && bebelus != 0 ? `${style.button_people}` : `${style.button_people} ${style.btn_disable}`}>-</button>
                            <h1>{bebelus}</h1>
-                           <button className={total == 9 ? `${style.button_people} ${style.btn_disable}` : `${style.button_people}`} onClick={() => increment("bebelus")}>+</button>
+                           <button disabled={bebelus == 1} className={bebelus == 1 ? `${style.button_people} ${style.btn_disable}` : `${style.button_people}`} onClick={() => increment("bebelus")}>+</button>
                        </div>
 
                     </div>

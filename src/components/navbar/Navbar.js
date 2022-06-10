@@ -16,7 +16,7 @@ import NumberPeople from "../numberPeople/NumberPeople";
 
 const Navbar = () => {
 
-    const {toggleDestination, activateToggleDestination, selectDestination, removeDestination, toggleSpre, activateSpre, spreDestination, swich, togglePeople, changeTogglePeople} = useContext(Town);
+    const {toggleDestination, activateToggleDestination, selectDestination, removeDestination, toggleSpre, activateSpre, spreDestination, swich, togglePeople, changeTogglePeople, total} = useContext(Town);
 
 
     return ( 
@@ -104,7 +104,7 @@ const Navbar = () => {
             <div onClick={togglePeople == false ? changeTogglePeople : null} className={style.nav__select_people}>
 
                 <SwapVertIcon/>
-                <h4>8</h4>
+                <h4>{total}</h4>
                 <PeopleIcon/>
 
                 {!togglePeople && <NumberPeople toggle={togglePeople}/>}

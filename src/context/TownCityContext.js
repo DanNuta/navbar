@@ -163,7 +163,7 @@ const townReducer = (state, action) =>{
 
 
 
-    if(action.type === "NUMBER_PEOPLE"){
+    if(action.type === "NUMBER_PEOPLE_INCREMENT"){
 
         if(action.peyload === "adult"){
 
@@ -193,12 +193,49 @@ const townReducer = (state, action) =>{
                 bebelus: incrementAdult
             }
         }
+  
+    }
 
+
+
+
+
+    if(action.type === "NUMBER_PEOPLE_DECREMENT"){
 
 
         
 
-        
+        if(action.peyload === "adult"){
+
+            console.log(action.peyload)
+
+            let incrementAdult = state.adult <= 9 ? state.adult -1 : state.adult;
+            return{
+                ...state,
+                adult: incrementAdult
+            }
+        }
+
+
+        if(action.peyload === "copil"){
+            let incrementAdult = state.copil <= 7 ? state.copil -1 : state.copil;
+            return{
+                ...state,
+                copil: incrementAdult
+            }
+        }
+
+
+
+
+        if(action.peyload === "bebelus"){
+            let incrementAdult = state.bebelus <= 1 ? state.bebelus -1 : state.bebelus;
+            return{
+                ...state,
+                bebelus: incrementAdult
+            }
+        }
+  
     }
 
 }
@@ -431,8 +468,15 @@ const TownCityContext = (props) => {
 
 
     const numberPeopleFn = (element) =>{
-        disspach({type: "NUMBER_PEOPLE", peyload: element})
+        disspach({type: "NUMBER_PEOPLE_INCREMENT", peyload: element})
     }
+
+
+    const numberDecrementFn = (element) =>{
+        disspach({type: "NUMBER_PEOPLE_DECREMENT", peyload: element})
+    }
+
+
 
 
 
@@ -470,6 +514,7 @@ const TownCityContext = (props) => {
         copil: town.copil,
         bebelus: town.bebelus,
         increment: numberPeopleFn,
+        decrement: numberDecrementFn,
 
         total: town.copil + town.adult + town.bebelus > 9 ? 9 : town.copil + town.adult + town.bebelus
 
