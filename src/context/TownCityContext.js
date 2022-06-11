@@ -501,7 +501,7 @@ const TownCityContext = (props) => {
     const toggleCalendarFn = () =>{
         disspach({type: "TOGGLE_CALENDAR"})
 
-        console.log("SAlut din Toggle calendar")
+     
 
     }
 
