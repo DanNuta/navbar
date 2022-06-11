@@ -1,7 +1,20 @@
 import styleEl from "./PrevMonth.module.scss"
 import * as moment from 'moment';
+import { Town } from "../../../context/TownCityContext";
+import { useContext } from "react";
 
 const PrevMonth = () => {
+
+    const {toggleCalendarFn, toggleCalendar, selecteazaZiuaDePlecare} = useContext(Town)
+
+
+    const daySelect = (item) =>{
+        toggleCalendarFn()
+        selecteazaZiuaDePlecare(item);
+
+      
+
+    }
 
 
     let curentDay = moment().format("D");
@@ -33,7 +46,7 @@ const PrevMonth = () => {
     for(let i = 1; i <= moment().daysInMonth(); i++){
          let currentDay = i == curentDay ? `${styleEl.today}` : ""
 
-         daysInMonth.push(<div className={ i < curentDay ? `${styleEl.disabled_days}${currentDay}` : `${currentDay}`}>{i}</div>)
+         daysInMonth.push(<div onClick={() =>daySelect(i)} className={ i < curentDay ? `${styleEl.disabled_days}${currentDay}` : `${currentDay}`}>{i}</div>)
      }
 
 

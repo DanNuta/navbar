@@ -251,6 +251,12 @@ const townReducer = (state, action) =>{
 
 
 
+     if(action.type === "ZIUA_DE_PLECARE"){
+         console.log("salut")
+     }
+
+
+
 
 }
 
@@ -500,8 +506,12 @@ const TownCityContext = (props) => {
 
     const toggleCalendarFn = () =>{
         disspach({type: "TOGGLE_CALENDAR"})
+    }
 
-     
+
+    const ziuaDePlecareFn = (item) =>{
+        disspach({type: "ZIUA_DE_PLECARE"})
+        console.log(item)
 
     }
 
@@ -549,7 +559,8 @@ const TownCityContext = (props) => {
 
          //----------- calendar --------------
          toggleCalendarFn: toggleCalendarFn,
-         toggleCalendar: town.toggleCalendar
+         toggleCalendar: town.toggleCalendar,
+         selecteazaZiuaDePlecare: ziuaDePlecareFn
 
 
 
