@@ -1,6 +1,4 @@
 .calendar_month{
-    background-color: red;
-   
 
     h4{
         height: 2rem;
@@ -12,7 +10,7 @@
 
 
     &__week_end{
-        background-color: blue;
+       
         display: flex;
 
         & div{
@@ -28,24 +26,27 @@
 
 
     &__days{
-        background-color: green;
+        
         display: flex;
         flex-wrap: wrap;
 
        
 
         & div{
-            width: calc(100% / 7);
+            width: calc(96% / 7);
             display: flex;
             align-items: center;
             justify-content: center;
             height: 3rem;
+            border: 1px solid rgba(0, 0, 0, 0);
+            
            
 
             &:hover{
-                
+                border: 1px solid rgb(0, 140, 255);
                 border-radius: 100px;
-                border: 1px solid blue;
+                
+                
             }
 
 
@@ -59,9 +60,16 @@
 
 
 .today{
-    background-color: blue;
+    background-color: rgb(0, 140, 255);
     border-radius: 100px;
+    color: white;
+}
 
+
+
+.disabled_days{
+    color: rgba(0, 0, 0, 0.507);
+    
 }
 
 

@@ -6,6 +6,8 @@ const PrevMonth = () => {
 
     let curentDay = moment().format("D");
 
+   
+
     const firstDayOfMonth = () =>{
         let dataObj = moment();
 
@@ -17,18 +19,12 @@ const PrevMonth = () => {
     }
 
 
-    let css = {
-      color: "white",
-      backgroundColor: "DodgerBlue",
-      padding: "10px",
-      fontFamily: "Arial"
-      }
+   
 
     let blanck = [];
 
     for(let i = 0; i < firstDayOfMonth(); i++){
 
-        
         blanck.push(<div></div>)
     }
     
@@ -37,7 +33,7 @@ const PrevMonth = () => {
     for(let i = 1; i <= moment().daysInMonth(); i++){
          let currentDay = i == curentDay ? `${styleEl.today}` : ""
 
-         daysInMonth.push(<div className={`${currentDay}`}>{i}</div>)
+         daysInMonth.push(<div className={ i < curentDay ? `${styleEl.disabled_days}${currentDay}` : `${currentDay}`}>{i}</div>)
      }
 
 
@@ -47,14 +43,10 @@ const PrevMonth = () => {
          return item
      })
 
-     const daysWeek = moment.weekdaysShort();
+     const daysWeek = moment.weekdaysShort();  //zilele din saptamana
 
 
 
-
-     
-
-     console.log(curentDay)
 
     return ( 
         <div>
