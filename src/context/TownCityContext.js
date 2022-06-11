@@ -238,6 +238,20 @@ const townReducer = (state, action) =>{
   
     }
 
+
+     //--------------------- canedar -------------------------------------
+
+
+     if(action.type === "TOGGLE_CALENDAR"){
+         return {
+             ...state, 
+             toggleCalendar: !state.toggleCalendar
+         }
+     }
+
+
+
+
 }
 
 
@@ -393,7 +407,13 @@ const TownCityContext = (props) => {
         toggleBussinessEconom: false,
         adult: 0,
         copil: 0,
-        bebelus: 0
+        bebelus: 0,
+
+         // ------------------------calendar ---------------------------------
+
+         toggleCalendar: false,
+
+
         
     }
 
@@ -476,6 +496,15 @@ const TownCityContext = (props) => {
         disspach({type: "NUMBER_PEOPLE_DECREMENT", peyload: element})
     }
 
+    //-----------------------people select----------------------------
+
+    const toggleCalendarFn = () =>{
+        disspach({type: "TOGGLE_CALENDAR"})
+
+        console.log("SAlut din Toggle calendar")
+
+    }
+
 
 
 
@@ -516,7 +545,11 @@ const TownCityContext = (props) => {
         increment: numberPeopleFn,
         decrement: numberDecrementFn,
 
-        total: town.copil + town.adult + town.bebelus > 9 ? 9 : town.copil + town.adult + town.bebelus
+        total: town.copil + town.adult + town.bebelus > 9 ? 9 : town.copil + town.adult + town.bebelus,
+
+         //----------- calendar --------------
+         toggleCalendarFn: toggleCalendarFn,
+         toggleCalendar: town.toggleCalendar
 
 
 

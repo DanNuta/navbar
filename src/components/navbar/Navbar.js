@@ -12,11 +12,12 @@ import { Town } from "../../context/TownCityContext";
 import { useContext } from "react";
 import SpreDestination from "../selectSpre/SpreDestination";
 import NumberPeople from "../numberPeople/NumberPeople";
+import CalendarFull from "../../components/calendar/CalendarFull"
 
 
 const Navbar = () => {
 
-    const {toggleDestination, activateToggleDestination, selectDestination, removeDestination, toggleSpre, activateSpre, spreDestination, swich, togglePeople, changeTogglePeople, total} = useContext(Town);
+    const {toggleDestination, activateToggleDestination, selectDestination, removeDestination, toggleSpre, activateSpre, spreDestination, swich, togglePeople, changeTogglePeople, total, toggleCalendar, toggleCalendarFn} = useContext(Town);
 
 
     return ( 
@@ -72,7 +73,7 @@ const Navbar = () => {
 
 
 
-            <div className={style.nav__calendar}>
+            <div onClick={toggleCalendar == false ? toggleCalendarFn : null} className={style.nav__calendar}>
 
 
 
@@ -93,6 +94,11 @@ const Navbar = () => {
                     </div>
                     <CalendarMonthIcon/>
                 </div>
+
+                {!toggleCalendar && <CalendarFull toggle={toggleCalendar}/>}
+                {toggleCalendar && <CalendarFull toggle={toggleCalendar}/>}
+                {toggleCalendar && reactDom.createPortal(<div onClick={toggleCalendar == true ? toggleCalendarFn : null} className={style.second_element}></div>, document.querySelector(".destination"))}
+
             </div>
 
 

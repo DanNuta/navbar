@@ -1,0 +1,32 @@
+
+.card{
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 11;
+}
+
+
+ .element{
+    opacity: 0;
+    animation:  elementAnimation .2s ease-out forwards ;
+    padding: 25px;
+ }
+
+
+@keyframes elementAnimation {
+    0%{
+        opacity: 0;
+        
+    }
+
+    90%{
+        opacity: 0;
+    }
+
+    100%{
+        opacity: 100%;
+
+    }
+    
+}
