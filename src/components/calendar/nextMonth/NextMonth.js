@@ -66,7 +66,8 @@ const PrevMonth = (props) => {
 
 
             <div className={styleEl.calendar_month}>
-                <h4>{`${moment.months()[new Date().getMonth() +1]} ${moment().year()}`}</h4>
+                <h4>{`${props.next.format("MMMM")} ${props.next.year()}`}</h4>
+
 
                 <div className={styleEl.calendar_month__week_end}>
                     {daysWeek.map((item, i) =>(

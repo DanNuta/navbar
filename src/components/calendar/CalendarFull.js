@@ -22,6 +22,13 @@ const CalendarFull = (props) => {
 
 
     const prevMonth = () =>{
+
+        setNextMonth(moment().subtract(nextCounter, 'months'))
+        setPrevMonth(moment().subtract(prevCounter, 'months'))
+
+        setNextCounter(prev => prev +1)
+        setPrevCounter(prev => prev +1)
+
         
     }
 

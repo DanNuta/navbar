@@ -58,16 +58,16 @@ const PrevMonth = (props) => {
      const daysWeek = moment.weekdaysShort();  //zilele din saptamana
 
 
+     console.log(props.prev.year())
+
+
     
 
 
     return ( 
-       
-
-
 
             <div className={styleEl.calendar_month}>
-                <h4>{`${moment.months()[new Date().getMonth() +1]} ${moment().year()}`}</h4>
+                <h4>{`${props.prev.format("MMMM")} ${props.prev.year()}`}</h4>
 
                 <div className={styleEl.calendar_month__week_end}>
                     {daysWeek.map((item, i) =>(
