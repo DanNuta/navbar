@@ -17,7 +17,7 @@ import CalendarFull from "../../components/calendar/CalendarFull"
 
 const Navbar = () => {
 
-    const {toggleDestination, activateToggleDestination, selectDestination, removeDestination, toggleSpre, activateSpre, spreDestination, swich, togglePeople, changeTogglePeople, total, toggleCalendar, toggleCalendarFn} = useContext(Town);
+    const {toggleDestination, activateToggleDestination, selectDestination, removeDestination, toggleSpre, activateSpre, spreDestination, swich, togglePeople, changeTogglePeople, total, toggleCalendar, toggleCalendarFn, dataPlecare} = useContext(Town);
 
 
     return ( 
@@ -81,7 +81,7 @@ const Navbar = () => {
 
                 <div className={style.plecare}>
                         <h5 className={style.font_text}>data plecare</h5>
-                        <h4>3 iunie</h4>
+                        <h4>{`${dataPlecare.data} ${dataPlecare.month}`}</h4>
                     </div>
                     <CalendarMonthIcon/>
                 </div>

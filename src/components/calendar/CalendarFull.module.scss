@@ -4,6 +4,7 @@
     top: 0;
     right: 0;
     z-index: 11;
+    width: 800px;
 }
 
 
@@ -11,6 +12,104 @@
     opacity: 0;
     animation:  elementAnimation .2s ease-out forwards ;
     padding: 25px;
+    position: relative;
+
+
+
+      &__top_calendar{
+          display: flex;
+          justify-content: space-between;
+
+
+          &__radion_btn{
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+          }
+
+
+
+
+          &__right_element{
+              display: flex;
+
+
+              .data_plecare{
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  width: 100px;
+                  border-top-left-radius: 100px;
+                  border-bottom-left-radius: 100px;
+                  border: 1px solid rgb(0, 162, 255);
+                  padding: 5px 8px 5px 15px;
+                  background-color: rgba(0, 162, 255, 0.096);
+
+              }
+
+
+              .data_retur{
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  width: 100px;
+                  border-top-right-radius: 100px;
+                  border-bottom-right-radius: 100px;
+                  border: 1px solid rgba(161, 161, 161, 0.555);
+                  padding: 5px 15px 5px 8px;
+
+              }
+          }
+      }
+
+
+
+
+
+
+      &__calendar_body{
+          display: flex;
+          gap: 2.5rem;
+      }
+
+
+
+
+      &__btn_left{
+          position: absolute;
+          width: 40px;
+          height: 40px;
+          border-radius: 100px;
+          background-color: white;
+          left: -20px;
+          top: 50%;
+          transform: translateY(-50%);
+          box-shadow: 0px 0px 39px 0px rgba(0, 0, 0, 0.35);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+      }
+
+
+      &__btn_right{
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border-radius: 100px;
+        background-color: white;
+        right: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+        box-shadow: 0px 0px 39px 0px rgba(0, 0, 0, 0.35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+
+
  }
 
 

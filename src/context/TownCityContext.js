@@ -1,6 +1,8 @@
 import react from "react";
 import {createContext, useReducer} from "react";
 
+import * as moment from 'moment';
+
 
 
 
@@ -72,12 +74,16 @@ const townReducer = (state, action) =>{
         let deleteElementInsideDestination = action.peyload.destination ? state.spreDestination.filter(item => item.id !== action.peyload.city.id) : state.spreDestination;
         let validationData = verifyElement ? deleteElementInsideDestination : [...state.spreDestination, action.peyload.city];
 
-        console.log("Action", deleteElementInsideDestination)
+        let activateCalendarAfterChack = state.spreDestination.length > 0 ? state.toggleCalendar = true : state.toggleCalendar = false
+        
        
         return {
             ...state,
             toggleSpre: verifyElement ? false : true,
-            spreDestination: validationData.splice(0, 3)
+            spreDestination: validationData.splice(0, 3),
+            toggleCalendar: true
+
+            
         }
 
     }
@@ -252,7 +258,16 @@ const townReducer = (state, action) =>{
 
 
      if(action.type === "ZIUA_DE_PLECARE"){
-         console.log("salut")
+         console.log(action.peyload)
+         
+
+         return {
+             ...state,
+             dataPlecare: {
+                month: moment.months()[new Date().getMonth() +1],
+                data:  action.peyload
+            }
+         }
      }
 
 
@@ -418,6 +433,10 @@ const TownCityContext = (props) => {
          // ------------------------calendar ---------------------------------
 
          toggleCalendar: false,
+         dataPlecare: {
+             month: moment.months()[new Date().getMonth() +1],
+             data:  moment().format("D")
+         }
 
 
         
@@ -506,13 +525,12 @@ const TownCityContext = (props) => {
 
     const toggleCalendarFn = () =>{
         disspach({type: "TOGGLE_CALENDAR"})
+        
     }
 
 
     const ziuaDePlecareFn = (item) =>{
-        disspach({type: "ZIUA_DE_PLECARE"})
-        console.log(item)
-
+        disspach({type: "ZIUA_DE_PLECARE", peyload: item})
     }
 
 
@@ -560,7 +578,9 @@ const TownCityContext = (props) => {
          //----------- calendar --------------
          toggleCalendarFn: toggleCalendarFn,
          toggleCalendar: town.toggleCalendar,
-         selecteazaZiuaDePlecare: ziuaDePlecareFn
+         selecteazaZiuaDePlecare: ziuaDePlecareFn,
+
+         dataPlecare: town.dataPlecare
 
 
 

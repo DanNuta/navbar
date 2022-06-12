@@ -3,9 +3,9 @@ import * as moment from 'moment';
 import { Town } from "../../../context/TownCityContext";
 import { useContext } from "react";
 
-const PrevMonth = () => {
+const PrevMonth = (props) => {
 
-    const {toggleCalendarFn, toggleCalendar, selecteazaZiuaDePlecare} = useContext(Town)
+    const {toggleCalendarFn, toggleCalendar, selecteazaZiuaDePlecare, dataPlecare} = useContext(Town)
 
 
     const daySelect = (item) =>{
@@ -17,12 +17,11 @@ const PrevMonth = () => {
     }
 
 
-    let curentDay = moment().format("D");
+    let curentDay = props.prev.format("D");
 
-   
-
+    
     const firstDayOfMonth = () =>{
-        let dataObj = moment();
+        let dataObj = props.prev;
 
         let firstDay = moment(dataObj)
                        .startOf("month")
@@ -43,10 +42,10 @@ const PrevMonth = () => {
     
     let daysInMonth = [];
     
-    for(let i = 1; i <= moment().daysInMonth(); i++){
-         let currentDay = i == curentDay ? `${styleEl.today}` : ""
+    for(let i = 1; i <= props.prev.daysInMonth(); i++){
+         let currentDay = i == dataPlecare.data ? `${styleEl.today}` : "";
 
-         daysInMonth.push(<div onClick={() =>daySelect(i)} className={ i < curentDay ? `${styleEl.disabled_days}${currentDay}` : `${currentDay}`}>{i}</div>)
+         daysInMonth.push(<div  onClick={ i < curentDay ? null : () =>daySelect(i)} className={ i < curentDay ? `${styleEl.disabled_days}` : `${currentDay} ${styleEl.div}`}>{i}</div>)
      }
 
 
@@ -59,15 +58,16 @@ const PrevMonth = () => {
      const daysWeek = moment.weekdaysShort();  //zilele din saptamana
 
 
+    
 
 
     return ( 
-        <div>
+       
 
 
 
             <div className={styleEl.calendar_month}>
-                <h4>{moment().month()}</h4>
+                <h4>{`${moment.months()[new Date().getMonth() +1]} ${moment().year()}`}</h4>
 
                 <div className={styleEl.calendar_month__week_end}>
                     {daysWeek.map((item, i) =>(
@@ -82,7 +82,7 @@ const PrevMonth = () => {
             </div>
 
 
-        </div>
+        
      );
 }
  

@@ -1,4 +1,5 @@
 .calendar_month{
+    width: 50%;
 
     h4{
         height: 2rem;
@@ -32,25 +33,24 @@
 
        
 
-        & div{
+         div{
             width: calc(96% / 7);
             display: flex;
             align-items: center;
             justify-content: center;
             height: 3rem;
             border: 1px solid rgba(0, 0, 0, 0);
-            
-           
+        }
 
+
+
+        .div{
             &:hover{
                 border: 1px solid rgb(0, 140, 255);
                 border-radius: 100px;
                 
                 
             }
-
-
-            
         }
 
        
@@ -69,6 +69,7 @@
 
 .disabled_days{
     color: rgba(0, 0, 0, 0.507);
+    
     
 }
 
