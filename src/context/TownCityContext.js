@@ -258,16 +258,67 @@ const townReducer = (state, action) =>{
 
 
      if(action.type === "ZIUA_DE_PLECARE"){
-         console.log(action.peyload)
          
 
-         return {
-             ...state,
-             dataPlecare: {
-                month: moment.months()[new Date().getMonth() +1],
-                data:  action.peyload
+        if(state.dataPlecareToggle){
+            return {
+                ...state,
+                dataPlecare: {
+                   month: action.peyload.month,
+                   data:  action.peyload.day
+               }
             }
-         }
+        }
+
+        if(state.dataReturToggle){
+           
+            return{
+                ...state,
+                dataRetur: {
+                    month: action.peyload.month,
+                    data:  action.peyload.day
+                }
+            }
+        }
+        
+     }
+
+
+
+
+     if(action.type === "PLECARE_RETURN_TOGGLE"){
+
+        if(action.peyload === "data_plecare"){
+
+            return{
+                ...state,
+             dataPlecareToggle: true,
+             dataReturToggle: false
+            }
+        }
+
+        if(action.peyload === "data_retur"){
+
+            return{
+                ...state,
+                dataPlecareToggle: false,
+                dataReturToggle: true
+            }
+        }
+     }
+
+
+
+
+     if(action.type === "REMOVE_RETURN_DATA"){
+
+        return{
+            ...state,
+            dataRetur: {
+            
+            }
+
+        }
      }
 
 
@@ -434,9 +485,17 @@ const TownCityContext = (props) => {
 
          toggleCalendar: false,
          dataPlecare: {
-             month: moment.months()[new Date().getMonth() +1],
+             month: moment().format("MMM"),
              data:  moment().format("D")
-         }
+         },
+
+         dataRetur: {
+            
+         },
+
+         dataPlecareToggle: true,
+         dataReturToggle: false
+
 
 
         
@@ -535,6 +594,19 @@ const TownCityContext = (props) => {
 
 
 
+    const togglePlecareReturFn = (item) =>{
+        disspach({type: "PLECARE_RETURN_TOGGLE", peyload: item})
+    }   
+
+
+
+    const deleteReturnDataFn = () =>{
+        disspach({type: "REMOVE_RETURN_DATA"})
+    }
+
+
+
+
 
 
    const valueElementState = {
@@ -576,12 +648,17 @@ const TownCityContext = (props) => {
         total: town.copil + town.adult + town.bebelus > 9 ? 9 : town.copil + town.adult + town.bebelus,
 
          //----------- calendar --------------
-         toggleCalendarFn: toggleCalendarFn,
+
          toggleCalendar: town.toggleCalendar,
+         dataPlecare: town.dataPlecare,
+         dataPlecareToggle: town.dataPlecareToggle,
+         dataReturToggle: town.dataReturToggle,
+         dataRetur: town.dataRetur,
+         
+         toggleCalendarFn: toggleCalendarFn,
          selecteazaZiuaDePlecare: ziuaDePlecareFn,
-
-         dataPlecare: town.dataPlecare
-
+         togglePlecareReturFn: togglePlecareReturFn,
+         deleteReturnDataFn: deleteReturnDataFn
 
 
     

@@ -7,6 +7,11 @@ body{
     background-color: rgb(212, 212, 212);
 }
 
+
+.card{
+    height: 500px;
+}
+
 .font_text{
     text-transform: uppercase;
     color: rgb(0, 0, 0);
@@ -160,6 +165,7 @@ body{
         border-right: 1px solid black;
         gap: 10px;
         position: relative;
+       
         
 
 

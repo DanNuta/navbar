@@ -13,11 +13,12 @@ import { useContext } from "react";
 import SpreDestination from "../selectSpre/SpreDestination";
 import NumberPeople from "../numberPeople/NumberPeople";
 import CalendarFull from "../../components/calendar/CalendarFull"
+import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 
 
 const Navbar = () => {
 
-    const {toggleDestination, activateToggleDestination, selectDestination, removeDestination, toggleSpre, activateSpre, spreDestination, swich, togglePeople, changeTogglePeople, total, toggleCalendar, toggleCalendarFn, dataPlecare} = useContext(Town);
+    const {toggleDestination, deleteReturnDataFn, dataRetur, activateToggleDestination, selectDestination, removeDestination, toggleSpre, activateSpre, spreDestination, swich, togglePeople, changeTogglePeople, total, toggleCalendar, toggleCalendarFn, dataPlecare} = useContext(Town);
 
 
     return ( 
@@ -73,11 +74,11 @@ const Navbar = () => {
 
 
 
-            <div onClick={toggleCalendar == false ? toggleCalendarFn : null} className={style.nav__calendar}>
+            <div className={style.nav__calendar}>
 
 
 
-                <div className={style.data_plecare}>
+                <div  onClick={toggleCalendar == false ? toggleCalendarFn : null} className={style.data_plecare}>
 
                 <div className={style.plecare}>
                         <h5 className={style.font_text}>data plecare</h5>
@@ -88,11 +89,13 @@ const Navbar = () => {
 
 
                 <div className={style.data_retur}>
-                    <div>
+                    <div  onClick={toggleCalendar == false ? toggleCalendarFn : null}>
                         <h5 className={style.font_text}>data retur</h5>
-                        <h4>+ Adaug retur</h4>
+                        <h4>{ dataRetur.data !== undefined ? `${dataRetur.data} ${dataRetur.month}` : "+Adauga retur"}</h4>
                     </div>
-                    <CalendarMonthIcon/>
+                    
+
+                    {dataRetur.data ? <HighlightOffRoundedIcon onClick={deleteReturnDataFn}/> :  <CalendarMonthIcon/>}
                 </div>
 
                 {!toggleCalendar && <CalendarFull toggle={toggleCalendar}/>}

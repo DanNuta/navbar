@@ -5,7 +5,7 @@ import { useContext } from "react";
 
 const PrevMonth = (props) => {
 
-    const {toggleCalendarFn, toggleCalendar, selecteazaZiuaDePlecare, dataPlecare} = useContext(Town)
+    const {toggleCalendarFn, toggleCalendar, selecteazaZiuaDePlecare, dataPlecare, dataRetur} = useContext(Town)
 
 
     const daySelect = (item) =>{
@@ -30,6 +30,12 @@ const PrevMonth = (props) => {
     }
 
 
+
+    const hober_CSS = {
+        backgroundColor: 'rgba(0, 162, 255, 0.2)',
+        color: "black"
+    }
+
    
 
     let blanck = [];
@@ -42,9 +48,17 @@ const PrevMonth = (props) => {
     let daysInMonth = [];
     
     for(let i = 1; i <= props.next.daysInMonth(); i++){
-         
 
-         daysInMonth.push(<div  onClick={() =>daySelect(i)} className={`${styleEl.div}`}>{i}</div>)
+        let item = {
+            month: props.next.format("MMM"),
+            day: i
+        }
+         
+        let currentDay = (i == dataRetur.data) && (dataRetur.month === props.next.format("MMM")) ? `${styleEl.today}` : "";
+
+        let dayTur = (i == dataPlecare.data) && (dataPlecare.month === props.next.format("MMM")) ? `${styleEl.today}` : "";
+
+         daysInMonth.push(<div onClick={() =>daySelect(item)} className={`${dayTur} ${styleEl.div} ${currentDay} ${styleEl.div}`}>{i}</div>)
      }
 
 
@@ -57,7 +71,6 @@ const PrevMonth = (props) => {
      const daysWeek = moment.weekdaysShort();  //zilele din saptamana
 
 
-    
 
 
     return ( 

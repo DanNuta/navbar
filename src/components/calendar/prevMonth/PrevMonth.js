@@ -2,19 +2,22 @@ import styleEl from "./PrevMonth.module.scss"
 import * as moment from 'moment';
 import { Town } from "../../../context/TownCityContext";
 import { useContext } from "react";
+import { useState } from "react";
 
 const PrevMonth = (props) => {
 
-    const {toggleCalendarFn, toggleCalendar, selecteazaZiuaDePlecare, dataPlecare} = useContext(Town)
+    const {toggleCalendarFn, toggleCalendar, selecteazaZiuaDePlecare, dataPlecare, dataRetur} = useContext(Town)
 
 
     const daySelect = (item) =>{
-        toggleCalendarFn()
-        selecteazaZiuaDePlecare(item);
-
-      
-
+         toggleCalendarFn()
+         selecteazaZiuaDePlecare(item);
     }
+
+
+
+
+    
 
 
     let curentDay = props.prev.format("D");
@@ -31,6 +34,10 @@ const PrevMonth = (props) => {
     }
 
 
+    const hober_CSS = {
+        backgroundColor: 'rgba(0, 162, 255, 0.2)',
+        color: "black"
+    }
    
 
     let blanck = [];
@@ -43,9 +50,19 @@ const PrevMonth = (props) => {
     let daysInMonth = [];
     
     for(let i = 1; i <= props.prev.daysInMonth(); i++){
-         let currentDay = i == dataPlecare.data ? `${styleEl.today}` : "";
+         
+         let item = {
+             month: props.prev.format("MMM"),
+             day: i
+         }
 
-         daysInMonth.push(<div  onClick={ i < curentDay ? null : () =>daySelect(i)} className={ i < curentDay ? `${styleEl.disabled_days}` : `${currentDay} ${styleEl.div}`}>{i}</div>)
+         let currentDay = (i == dataPlecare.data) && (dataPlecare.month === props.prev.format("MMM")) ? `${styleEl.today}` : "";
+
+         let dataReturn = (i == dataRetur.data) && (dataRetur.month === props.prev.format("MMM")) ? `${styleEl.today}` : "";
+
+
+        
+         daysInMonth.push(<div   onClick={ i < curentDay ? null : () =>daySelect(item)} className={ i < curentDay  ? `${styleEl.disabled_days}` : `${dataReturn}${currentDay} ${styleEl.div}`}>{i}</div>)
      }
 
 
@@ -56,13 +73,6 @@ const PrevMonth = (props) => {
      })
 
      const daysWeek = moment.weekdaysShort();  //zilele din saptamana
-
-
-     console.log(props.prev.year())
-
-
-    
-
 
     return ( 
 

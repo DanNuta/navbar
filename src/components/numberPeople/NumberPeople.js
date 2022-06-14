@@ -62,7 +62,7 @@ const NumberPeople = (props) => {
                        <div className={style.people_select__btn}>
                        <button disabled={copil == 0} onClick={() => decrement("copil")} className={copil <= 7 && copil != 0 ? `${style.button_people}` : `${style.button_people} ${style.btn_disable}`}>-</button>
                            <h1>{copil}</h1>
-                           <button disabled={total > 8} className={total > 8 ? `${style.button_people} ${style.btn_disable}` : `${style.button_people}`} onClick={() => increment("copil")}>+</button>
+                           <button disabled={total > 8} className={total > 9 ? `${style.button_people} ${style.btn_disable}` : `${style.button_people}`} onClick={() => increment("copil")}>+</button>
                        </div>
 
                     </div>
