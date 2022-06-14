@@ -18,7 +18,7 @@ import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 
 const Navbar = () => {
 
-    const {toggleDestination, deleteReturnDataFn, dataRetur, activateToggleDestination, selectDestination, removeDestination, toggleSpre, activateSpre, spreDestination, swich, togglePeople, changeTogglePeople, total, toggleCalendar, toggleCalendarFn, dataPlecare} = useContext(Town);
+    const {toggleDestination, searchTravelFn, deleteReturnDataFn, dataRetur, activateToggleDestination, selectDestination, removeDestination, toggleSpre, activateSpre, spreDestination, swich, togglePeople, changeTogglePeople, total, toggleCalendar, toggleCalendarFn, dataPlecare} = useContext(Town);
 
 
     return ( 
@@ -127,7 +127,7 @@ const Navbar = () => {
 
 
             <div>
-                <Button>Cauta</Button>
+                <Button onClick={searchTravelFn}>Cauta</Button>
             </div>
         </nav>
      );

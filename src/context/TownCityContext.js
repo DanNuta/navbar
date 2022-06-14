@@ -151,6 +151,8 @@ const townReducer = (state, action) =>{
 
     if(action.type === "TOGGLE_PEOPLE"){
 
+        console.log("CLICK")
+
         
         return{
             ...state,
@@ -224,7 +226,7 @@ const townReducer = (state, action) =>{
 
 
         if(action.peyload === "copil"){
-            let incrementAdult = state.copil <= 7 ? state.copil -1 : state.copil;
+            let incrementAdult = state.copil <= 9 ? state.copil -1 : state.copil;
             return{
                 ...state,
                 copil: incrementAdult
@@ -477,7 +479,7 @@ const TownCityContext = (props) => {
         // ------------------------people ---------------------------------
         togglePeople: false,
         toggleBussinessEconom: false,
-        adult: 0,
+        adult: 1,
         copil: 0,
         bebelus: 0,
 
@@ -607,6 +609,30 @@ const TownCityContext = (props) => {
 
 
 
+    //--------------------------------cauta------------------------------
+
+    const searchTravelFn = () =>{
+        const element = {
+            din: town.selectDestination,
+            spre: town.spreDestination,
+            dataPlecare: town.dataPlecare,
+            dataRetur: town.dataRetur,
+            nrDePersoane: {
+                adult: town.adult,
+                copil: town.copil,
+                bebelus: town.bebelus
+            }
+        }
+
+        console.log(element)
+
+        return element;
+
+    }
+
+
+
+
 
 
    const valueElementState = {
@@ -658,7 +684,12 @@ const TownCityContext = (props) => {
          toggleCalendarFn: toggleCalendarFn,
          selecteazaZiuaDePlecare: ziuaDePlecareFn,
          togglePlecareReturFn: togglePlecareReturFn,
-         deleteReturnDataFn: deleteReturnDataFn
+         deleteReturnDataFn: deleteReturnDataFn,
+
+
+
+         //-------search travel ----------------------
+         searchTravelFn: searchTravelFn
 
 
     
